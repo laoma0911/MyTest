@@ -1,0 +1,41 @@
+在这3个目录下面建立data目录，并在data目录下面新建myid文件 
+myid的文件内容分别为：1、2、3 
+
+
+zookepeer1 配置
+=======================================================
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=/opt/zookeeper1/data
+dataLogDir=/opt/zookeeper1/log
+clientPort=2181
+server.1=localhost:2287:3387
+server.2=localhost:2288:3388
+server.3=localhost:2289:3389
+
+
+zookepeer2 配置
+=======================================================
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=/opt/zookeeper2/data
+dataLogDir=/opt/zookeeper2/log
+clientPort=2182
+server.1=localhost:2287:3387
+server.2=localhost:2288:3388
+server.3=localhost:2289:3389
+
+
+zookepeer2 配置
+=======================================================
+tickTime=2000
+initLimit=10
+syncLimit=5
+dataDir=/opt/zookeeper3/data
+dataLogDir=/opt/zookeeper3/log
+clientPort=2183
+server.1=localhost:2287:3387
+server.2=localhost:2288:3388
+server.3=localhost:2289:3389
