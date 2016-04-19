@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.medlinker.uac.user">
+
+    <sql id="SelectSQL">
+		select uid,user_name AS userName,password,reg_time AS regTime,login_num AS loginNum,last_login AS lastLogin,group_id AS groupId
+	</sql>
+    <insert id="insert" parameterType="User" keyProperty="uid"  useGeneratedKeys="true">
+		insert into	user (uid,user_name,password,reg_time,login_num,last_login,group_id)
+		values (#{uid},#{userName},#{password},#{regTime},#{loginNum},#{lastLogin},#{groupId})
+	</insert>
+    <delete id="delete" parameterType="Long">
+		delete from user where uid=#{uid}
+	</delete>
+    <select id="countByFilter" parameterType="string" resultType="int">
+        select count(1) from user
+        <where>${WhereSQL}</where>
+    </select>
+    <select id="findByFilter" parameterType="hashmap" resultType="User">
+        <include refid="SelectSQL"/>
+        from user
+        <where>${WhereSQL}</where>
+        ${SortSQL}
+    </select>
+    <select id="getByPK" parameterType="long" resultType="User">
+        <include refid="SelectSQL"/>
+        from user where uid=#{uid}
+    </select>
+    <select id="getByUsername" parameterType="String" resultType="User">
+        <include refid="SelectSQL"/>
+        from user where user_name=#{name}
+    </select>
+    <update id="updateByBean" parameterType="User">
+		update user set
+		user_name=#{userName},password=#{password},reg_time=#{regTime},
+		login_num=#{loginNum},last_login=#{lastLogin},group_id=#{groupId}
+		where uid=#{uid}
+	</update>
+    <select id="findAll" resultType="User">
+        <include refid="SelectSQL"/>
+        FROM user
+    </select>
+</mapper>

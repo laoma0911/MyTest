@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration shutdownHook="disable">
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}][%-p][%t]%m%n"/>
+        </Console>
+        <RollingFile name="DebugRollingFile" fileName="logs/uac-provider.log"
+                     filePattern="logs/uac-provider-%d{yyyyMMdd}-%i.log.gz" bufferedIO="true" immediateFlush="false">
+            <!-- bufferedIO="true" bufferSizeStr="8192" -->
+            <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="ACCEPT"/>
+            <PatternLayout>
+                <Pattern>%d %-5p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+
+        </RollingFile>
+        <RollingFile name="ErrorRollingFile" fileName="logs/uac-provider-error.log" bufferedIO="true"
+                     immediateFlush="false"
+                     filePattern="logs/uac-provider-error-%d{yyyyMMdd}-%i.log.gz" ignoreExceptions="false">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout>
+                <Pattern>%d %-5p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="DebugRollingFile"/>
+            <AppenderRef ref="ErrorRollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

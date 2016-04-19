@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/aop   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+	<!--<cache:annotation-driven cache-manager="cacheManager" />-->
+	<aop:aspectj-autoproxy />
+	<bean id="propertyConfigurer"
+		class="com.medlinker.dentist.uac.api.util.MedlinkerPropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>${resources.path}jdbc.properties</value>
+				<value>${resources.path}dubbo.properties</value>
+				<value>${resources.path}redis.properties</value>
+			</list>
+		</property>
+	</bean>
+	<import resource="app-redis.xml" />
+	<import resource="app-resources.xml" />
+	<import resource="app-dao.xml" />
+	<import resource="app-service.xml" />
+	<import resource="app-dubbo-provider.xml" />
+	<import resource="app-threadpool.xml" />
+
+</beans>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="User" type="com.medlinker.dentist.uac.api.model.UserInfo"/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.medlinker.dentist.uac.api.base.PageInterceptor"/>
+    </plugins>
+    <mappers>
+        <mapper resource="mybatis/user.xml"/>
+    </mappers>
+</configuration>

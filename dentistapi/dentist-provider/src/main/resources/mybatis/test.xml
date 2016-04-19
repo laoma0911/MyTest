@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.medlinker.dentist.test">
+    <sql id="SelectSQL">
+        select id,uid,status
+    </sql>
+    <insert id="insert" parameterType="Test" keyProperty="id" useGeneratedKeys="true">
+        insert into	test (id,uid,status)
+        values (#{id},#{uid},#{status})
+    </insert>
+    <delete id="delete" parameterType="Long">
+        delete from test where id=#{id}
+    </delete>
+    <select id="countByFilter" parameterType="string" resultType="int">
+        select count(1) from test
+        <where>${WhereSQL}</where>
+    </select>
+    <select id="findByFilter" parameterType="hashmap" resultType="Test">
+        <include refid="SelectSQL"/>
+        from test
+        <where>${WhereSQL}</where>
+        ${SortSQL}
+    </select>
+    <select id="getByPK" parameterType="long" resultType="Test">
+        <include refid="SelectSQL"/>
+        from test where id=#{id}
+    </select>
+    <update id="updateByBean" parameterType="Test">
+        update test set
+        uid=#{uid},status=#{status}
+        where id=#{id}
+    </update>
+    <select id="findAll" resultType="Test">
+        <include refid="SelectSQL"/>
+        FROM test
+    </select>
+</mapper>

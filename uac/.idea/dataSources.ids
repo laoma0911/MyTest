@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - mytest@localhost" uuid="8e0a964f-46f6-41b9-99ff-701ae93cd823">
+    <database-info product="MySQL" version="5.5.27" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="mytest"/>
+      <table id="2" parent="1" name="user"/>
+      <table id="3" parent="1" name="test"/>
+      <column id="4" parent="2" name="uid">
+        <comment>id</comment>
+        <mandatory>1</mandatory>
+        <data-type>bigint(32)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="5" parent="2" name="user_name">
+        <comment>用户名</comment>
+        <data-type>varchar(32)</data-type>
+      </column>
+      <column id="6" parent="2" name="password">
+        <comment>密码</comment>
+        <data-type>varchar(32)</data-type>
+      </column>
+      <column id="7" parent="2" name="reg_time">
+        <comment>注册时间</comment>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="8" parent="2" name="login_num">
+        <comment>登录次数</comment>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="9" parent="2" name="last_login">
+        <comment>上次登录时间</comment>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="10" parent="2" name="group_id">
+        <comment>组织id</comment>
+        <data-type>bigint(20)</data-type>
+      </column>
+      <key id="11" parent="2" name="PRIMARY">
+        <columns>uid</columns>
+        <primary>1</primary>
+      </key>
+      <column id="12" parent="3" name="id">
+        <comment>id</comment>
+        <mandatory>1</mandatory>
+        <data-type>bigint(32)</data-type>
+        <sequence-identity>1</sequence-identity>
+      </column>
+      <column id="13" parent="3" name="uid">
+        <comment>uid</comment>
+        <mandatory>1</mandatory>
+        <data-type>bigint(32)</data-type>
+      </column>
+      <column id="14" parent="3" name="status">
+        <comment>status</comment>
+        <mandatory>1</mandatory>
+        <data-type>bigint(32)</data-type>
+      </column>
+      <key id="15" parent="3" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+    </database-model>
+  </data-source>
+</component>

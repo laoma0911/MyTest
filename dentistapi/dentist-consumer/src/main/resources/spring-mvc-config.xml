@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+           http://www.springframework.org/schema/mvc     http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+       ">
+
+    <context:component-scan base-package="com.medlinker.dentist.*.controller"/>
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <!-- 二进制格式转换器 -->
+                <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+                <!-- json转化器 -->
+                <bean
+                        class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                    <property name="supportedMediaTypes" value="application/json;charset=UTF-8"/>
+                    <property name="features">
+                        <array>
+                            <value>WriteDateUseDateFormat</value>
+                            <value>QuoteFieldNames</value>
+                            <value>WriteNullStringAsEmpty</value>
+                            <value>WriteNullListAsEmpty</value>
+                            <value>WriteNullNumberAsZero</value>
+                            <value>WriteNullBooleanAsFalse</value>
+                            <value>DisableCircularReferenceDetect</value>
+                        </array>
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/jsp/" p:suffix=".jsp"/>
+    <!-- 对静态资源文件的访问 -->
+    <mvc:default-servlet-handler/>
+    <!-- 文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 12 * 1024 * 1024 -->
+        <property name="maxUploadSize">
+            <value>12582912</value>
+        </property>
+    </bean>
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <bean class="com.medlinker.dentist.app.filter.MedlinkerConsumerFilter"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>

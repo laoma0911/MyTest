@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="            http://www.springframework.org/schema/aop     http://www.springframework.org/schema/aop/spring-aop.xsd            http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd            http://www.springframework.org/schema/tx      http://www.springframework.org/schema/tx/spring-tx.xsd        "
+       default-autowire="byName">
+    <context:annotation-config/>
+    <!-- 扫描配置属性注入 -->
+    <context:component-scan base-package="com.medlinker.dentist.provider"/>
+    <!-- 配置事务 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="globalRollbackOnParticipationFailure" value="false"/>
+    </bean>
+    <tx:advice id="transactionManagerAdivice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+            <tx:method name="find*" propagation="SUPPORTS"/>
+            <tx:method name="count*" propagation="SUPPORTS"/>
+            <tx:method name="get*" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
+    <bean id="serviceThrowsAdvice" class="com.medlinker.dentist.provider.aop.DentistExceptionAspect"/>
+    <aop:config>
+        <!-- 配置service层次回滚 -->
+        <aop:pointcut expression="execution(* com.medlinker.dentist.provider.service.impl.*.*(..))" id="servicePointcut"/>
+        <aop:advisor advice-ref="transactionManagerAdivice" pointcut-ref="servicePointcut"/>
+        <aop:aspect id="afterThrowingAdviceAspect" ref="serviceThrowsAdvice" order="1">
+            <aop:after-throwing pointcut-ref="servicePointcut" method="afterThrowing" arg-names="ex" throwing="ex"/>
+        </aop:aspect>
+    </aop:config>
+    <!-- 配置事务结束 -->
+
+    <bean id="testService" class="com.medlinker.dentist.provider.service.impl.TestServiceImpl">
+        <constructor-arg index="0" ref="testDao" />
+    </bean>
+
+</beans>

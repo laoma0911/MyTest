@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="uac-consumer:war">
+    <output-path>$PROJECT_DIR$/uac-consumer/target</output-path>
+    <root id="archive" name="uac-consumer.war">
+      <element id="artifact" artifact-name="uac-consumer:war exploded" />
+    </root>
+  </artifact>
+</component>

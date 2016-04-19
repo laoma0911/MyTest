@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+           http://code.alibabatech.com/schema/dubbo    http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       ">
+
+    <!-- 超时时间太小会导致客户端请求一次，provider被调用多次 -->
+    <dubbo:consumer timeout="10000" check="false"/>
+    <!-- uac -->
+    <dubbo:reference interface="com.medlinker.dentist.uac.api.interfaces.IRedisService" id="redisService"/>
+
+</beans>

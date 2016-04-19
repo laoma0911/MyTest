@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        ">
+  <bean id="baseDao" abstract="true" class="com.medlinker.dentist.uac.api.base.dao.impl.BaseDaoImpl">
+    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+  </bean>
+  <bean id="userDao" class="com.medlinker.dentist.uac.provider.dao.impl.UserDaoImpl" parent="baseDao"/>
+</beans>

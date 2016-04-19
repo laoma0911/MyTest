@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.medlinker</groupId>
+        <artifactId>dentistapi</artifactId>
+        <version>0.0.1</version>
+    </parent>
+    <artifactId>dentist-api</artifactId>
+    <name>dentist-api</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.medlinker</groupId>
+            <artifactId>uac-api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit3</artifactId>
+            <version>2.10</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>medlinker-releases</id>
+            <url>http://localhost:8081/nexus/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+</project>

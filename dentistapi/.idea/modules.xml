@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dentist-api/dentist-api.iml" filepath="$PROJECT_DIR$/dentist-api/dentist-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dentist-consumer/dentist-consumer.iml" filepath="$PROJECT_DIR$/dentist-consumer/dentist-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dentist-provider/dentist-provider.iml" filepath="$PROJECT_DIR$/dentist-provider/dentist-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dentistapi.iml" filepath="$PROJECT_DIR$/dentistapi.iml" />
+    </modules>
+  </component>
+</project>
