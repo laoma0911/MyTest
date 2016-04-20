@@ -1,0 +1,48 @@
+一、简介
+
+    RocketMQ的前身是Metaq，当 Metaq 3.0发布时，产品名称改为 RocketMQ
+
+    MetaQ2.x版本由于依赖了alibaba公司内部其他系统，对于公司外部用户使用不够友好，推荐使用3.0版本。
+
+     项目地址： https://github.com/alibaba/RocketMQ
+
+二、安装RocketMQ
+
+     安装RocketMQ需要jdk1.6, maven,git环境
+
+     如果本机没有安装git，请使用如下命令安装
+
+     yum install git
+
+     具体安装步骤可以参考 RocketMQ 项目组给出的步骤，参见：
+
+     https://github.com/alibaba/RocketMQ/wiki/Quick-Start
+
+git clone https://github.com/alibaba/RocketMQ.git
+
+cd RocketMQ
+
+sh install.sh
+
+cd devenv
+      安装完成后，因为install.sh脚本中创建devenv 符号链接写错了目录，需要在RocketMQ目录下执行如下命令：
+       rm -rf devenv
+
+       ln -s target/alibaba-rocketmq-3.0.7/alibaba-rocketmq devenv
+
+        启动RocketMQ
+
+       cd devenv/bin
+
+       nohup sh mqnamesrv &
+
+       nohup sh mqbroker -n "192.168.230.128:9876" &
+
+       more nohup.out
+
+       如果显示：
+
+       The Name Server boot success. 
+       The broker[vdata.kt, 192.168.230.128:10911] boot success.
+
+       则NameServer,Broker启动成功
