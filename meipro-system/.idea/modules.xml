@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/meipro-system.iml" filepath="$PROJECT_DIR$/meipro-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/meripro-system-admin/meripro-system-admin.iml" filepath="$PROJECT_DIR$/meripro-system-admin/meripro-system-admin.iml" />
+    </modules>
+  </component>
+</project>
